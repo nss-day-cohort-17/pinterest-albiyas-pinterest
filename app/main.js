@@ -50,6 +50,18 @@ angular
     })
   }
 })
+.controller("CreateBoardCtrl", function($scope,$http,$location) {
+  $scope.postToFireBase = () => {
+    $http.post(`https://pinterest-d2d81.firebaseio.com/.json`,
+          {
+            // uid:$scope.uid,
+            url: $scope.url,
+            description: $scope.description,
+            image: $scope.imageUrl
+          }
+    )
+  }
+})
 
 
 

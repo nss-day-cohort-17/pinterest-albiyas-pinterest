@@ -1,1 +1,9 @@
 <h1>Welcome to create Board</h1>
+  <div>Link</div>
+    <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
+  <div>Description:</div>
+    <input type="text" ng-model="description" name="description" placeholder="Describe your card">
+  <div>have a photo?</div>
+    <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
+
+<input type="button" value="Create Item" ng-click="postToFireBase(url,description,imageUrl)">
