@@ -25,6 +25,14 @@ angular
       controller: "CreateBoardCtrl",
       templateUrl: "/partials/createBoard.html"
     })
+    .when ("/userView", {
+      controller: "UserCtrl",
+      templateUrl: "/partials/userView.html"
+    })
+    .when ("/myBoards", {
+      controller: "MyBoardsCtrl",
+      templateUrl: "/partials/myBoards.html"
+    })
 
 })
 
@@ -40,29 +48,45 @@ angular
 
 
 })
-.controller ("LoginCtrl", function ($scope) {
+.controller ("LoginCtrl", function ($scope,$location,MainFactory) {
   $scope.user = {}
   $scope.loginHandler = () => {
-    firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
-      .then (()=>{
-        alert("Logged in")
-        $scope.UID = firebase.auth().currentUser.uid
-    })
+    MainFactory.getUid()
+    alert("Logged in")
+    $location.path(`/userView`);
+              // $scope.$apply()
   }
 })
-.controller("CreateBoardCtrl", function($scope,$http,$location) {
-  $scope.postToFireBase = () => {
-    $http.post(`https://pinterest-d2d81.firebaseio.com/.json`,
-          {
-            // uid:$scope.uid,
+.controller("CreateBoardCtrl", function($scope,$http,MainFactory) {
+  $scope.postToFireBase = (url,description,imageUrl ) => {
+    MainFactory.getUid()
+
+    $http.post(`https://pinterest-d2d81.firebaseio.com/${$scope.UID}.json`,
+          {"Boards":{
+            uid:$scope.UID,
             url: $scope.url,
             description: $scope.description,
             image: $scope.imageUrl
-          }
+          }}
     )
   }
 })
 
+.controller ("UserCtrl", function (){})
+.controller ("MyBoardsCtrl", function (){
+})
 
+//factories
+.factory ("MainFactory", function (){
+  return {
+    getUid : () => {
+      return
+            firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
+            .then (()=>{
 
-//firebase stuff
+              $scope.UID = firebase.auth().currentUser.uid
+              return $scope.UID
+        })
+    }
+  }
+})
