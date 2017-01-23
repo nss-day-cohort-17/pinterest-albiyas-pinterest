@@ -6,4 +6,4 @@
   <div>have a photo?</div>
     <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
 
-<input type="button" value="Create Item">
+<input type="button" value="Create Item" ng-click="postToFireBase(url,description,imageUrl)">
