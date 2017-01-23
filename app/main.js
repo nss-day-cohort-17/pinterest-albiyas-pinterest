@@ -25,13 +25,14 @@ angular
       controller: "CreateBoardCtrl",
       templateUrl: "/partials/createBoard.html"
     })
+
 })
 
 
 .controller ("RegisterCtrl", function ($http, $scope,$location) {
   $scope.registerHandler = () =>{
     $http.post(`https://pinterest-d2d81.firebaseio.com/.json`)
-    firebase.auth().createUserWithEmailAndPassword($scope.email,$scope.password)
+    firebase.auth().createUserWithEmailAndPassword($scope.user.email,$scope.user.password)
     $location.path(`/createBoard`)
     $scope.$apply
   }
@@ -39,8 +40,15 @@ angular
 
 
 })
-.controller ("LoginCtrl", function () {
-  console.log("im login view")
+.controller ("LoginCtrl", function ($scope) {
+  $scope.user = {}
+  $scope.loginHandler = () => {
+    firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
+      .then (()=>{
+        alert("Logged in")
+        $scope.UID = firebase.auth().currentUser.uid
+    })
+  }
 })
 
 
