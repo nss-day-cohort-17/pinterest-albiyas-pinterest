@@ -1,8 +1,8 @@
 <h1>Login Page</h1>
 
 
-<form>
-  <input type="email" placeholder="Email Id" ng-model="email">
-  <input type="password" placeholder="Password" ng-model="password">
-  <input type="submit" ng-submit="loginHandler()" value="Login">
+<form ng-submit="loginHandler()">
+  <input type="email" placeholder="Email Id" ng-model="user.email">
+  <input type="password" placeholder="Password" ng-model="user.password">
+  <input type="submit"  value="Login">
 </form>
