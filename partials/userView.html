@@ -1,6 +1,14 @@
-<nav>
+<!-- <nav>
   <ul>
     <li><a href="#/myBoards">My Boards</a></li>
     <li><a href="#/createBoard">Create New Board</a></li>
   </ul>
 </nav>
+
+ -->
+
+<div><ul>
+    <li ng-repeat ="boardObj in boardObjs>{{boardObj.Title}}
+    <a href="{{boardObj.url}}"><img src="{{boardObj.image}}"></a>
+
+</ul></div>
