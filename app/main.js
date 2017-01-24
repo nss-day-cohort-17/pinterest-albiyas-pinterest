@@ -41,15 +41,15 @@ angular
             email: $scope.user.email
           })
       })
-    // console.log(data)
-
-
-    // subFactory.getUid()
 
 
     $location.path(`/userView`)
     $scope.$apply
   }
+$scope.logout = ()=> {
+      firebase.auth().signOut()
+
+    }
 
 })
 .controller ("LoginCtrl", function ($scope,$location,MainFactory) {
@@ -58,13 +58,15 @@ angular
     MainFactory.getUid()
 
     alert("Logged in")
-    $location.path(`/userView`);
+    // $location.path(`/userView`);
               // $scope.$apply()
   }
 })
 
-.controller ("UserCtrl", function ($scope,$http){
-   // $scope.UID = firebase.auth().currentUser.uid
+.controller ("UserCtrl", function ($scope,$http,$location){
+    $scope.logout = ()=> {
+      firebase.auth().signOut()
+    }
   $scope.postToFireBase = () => {
 
     // MainFactory.getUid()
