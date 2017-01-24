@@ -1,14 +1,11 @@
 <nav>
   <ul>
-  <!--   <li><a href="#/myBoards">My Boards</a></li>
-    <li><a href="#/createBoard">Create New Board</a></li> -->
-    <a href="#/login"><input type="button" ng-click="logout()" name="" value="LOGOUT"></a>
-
+    <li><a href="#/myBoards">My Boards</a></li>
+    <li><a href="#/createBoard">Create New Board</a></li>
   </ul>
 </nav>
 
-
-<form ng-submit="postToFireBase()">
+<form ng-submit="postToFireBase(url,description,imageUrl)">
       <div>Link</div>
         <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
       <div>Description:</div>
@@ -30,11 +27,29 @@
 </form>
 
 
-<!--
-<div>
-  <ul>
-    <li ng-repeat ="boardObj in boardObjs>{{boardObj.Title}}
-    <a href="{{boardObj.url}}"><img src="{{boardObj.image}}"></a>
+<div ng-click="getThePins()">stuff</div>
+<div ng-repeat="pin in domPin">
+   <div class="col s12 m7">
+    <h2 class="header">{{pin.Title}}</h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="{{pin.image}}" alt="Pin Image">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>{{pin.description}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{{pin.url}}">Go</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  </ul>
-                                            </div> -->
+
+
+
+
+
+
+</div>
