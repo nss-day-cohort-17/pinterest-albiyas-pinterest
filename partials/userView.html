@@ -1,6 +1,40 @@
 <nav>
   <ul>
-    <li><a href="#/myBoards">My Boards</a></li>
-    <li><a href="#/createBoard">Create New Board</a></li>
+  <!--   <li><a href="#/myBoards">My Boards</a></li>
+    <li><a href="#/createBoard">Create New Board</a></li> -->
+    <a href="#/login"><input type="button" ng-click="logout()" name="" value="LOGOUT"></a>
+
   </ul>
 </nav>
+
+
+<form ng-submit="postToFireBase()">
+      <div>Link</div>
+        <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
+      <div>Description:</div>
+        <input type="text" ng-model="description" name="description" placeholder="Describe your card">
+      <div>have a photo?</div>
+        <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
+        <input type="text" name="Title" placeholder="Title", ng-model="title">
+
+    <input type="submit" value="Create Item">
+</form>
+
+<form ng-submit="boardToFireBase(boardName)">
+      <div>Board/Rack</div>
+
+        <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+
+
+    <input type="submit" value="Create Board">
+</form>
+
+
+<!--
+<div>
+  <ul>
+    <li ng-repeat ="boardObj in boardObjs>{{boardObj.Title}}
+    <a href="{{boardObj.url}}"><img src="{{boardObj.image}}"></a>
+
+  </ul>
+                                            </div> -->
