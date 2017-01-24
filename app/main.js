@@ -25,7 +25,7 @@ angular
       controller: "UserCtrl",
       templateUrl: "/partials/userView.html"
     })
-  
+
 
 })
 
@@ -33,13 +33,21 @@ angular
 .controller ("RegisterCtrl", function ($http, $scope,$location) {
   $scope.registerHandler = () =>{
     firebase.auth().createUserWithEmailAndPassword($scope.user.email,$scope.user.password)
-    $scope.UID = firebase.auth().currentUser.uid
-    $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
-      uid: $scope.UID,
-      email: $scope.user.email
-    })
+      .then ((data)=>{
+        console.log(data.uid)
+        $scope.UID = data.uid
+        $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
+            uid: $scope.UID,
+            email: $scope.user.email
+          })
+      })
+    // console.log(data)
 
-    $location.path(`/createBoard`)
+
+    // subFactory.getUid()
+
+
+    $location.path(`/userView`)
     $scope.$apply
   }
 
@@ -55,10 +63,11 @@ angular
   }
 })
 
-.controller ("UserCtrl", function ($scope,$http,MainFactory){
-   $scope.UID = firebase.auth().currentUser.uid
-  $scope.postToFireBase = (url,description,imageUrl ) => {
-    MainFactory.getUid()
+.controller ("UserCtrl", function ($scope,$http){
+   // $scope.UID = firebase.auth().currentUser.uid
+  $scope.postToFireBase = () => {
+
+    // MainFactory.getUid()
 
     $http.post(`https://pinterest-d2d81.firebaseio.com/Pins/.json`,
           {
@@ -72,8 +81,8 @@ angular
         )
       }
 
-  $scope.boardToFireBase = (boardName) => {
-    MainFactory.getUid()
+  $scope.boardToFireBase = () => {
+      $scope.UID = firebase.auth().currentUser.uid
       $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
           {
             uid:$scope.UID,
@@ -98,3 +107,8 @@ angular
     }
   }
 })
+
+
+
+
+//
