@@ -67,10 +67,18 @@ $scope.logout = ()=> {
     $scope.logout = ()=> {
       firebase.auth().signOut()
     }
+    //send newly created board to firebase
+  $scope.boardToFireBase = () => {
+      $scope.UID = firebase.auth().currentUser.uid
+      $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
+          {
+            uid:$scope.UID,
+            Title: $scope.boardName
+          })
+
+  }
+//send pin to firebase
   $scope.postToFireBase = () => {
-
-    // MainFactory.getUid()
-
     $http.post(`https://pinterest-d2d81.firebaseio.com/Pins/.json`,
           {
             uid:$scope.UID,
@@ -82,18 +90,17 @@ $scope.logout = ()=> {
           }
         )
       }
+//get the pins
+$scope.getThePins= () => {
+    $http.get('https://pinterest-d2d81.firebaseio.com/Pins/.json','')
+    .then((firePins) => {
+      console.log(firePins.data)
+    return  $scope.domPin = firePins.data
 
-  $scope.boardToFireBase = () => {
-      $scope.UID = firebase.auth().currentUser.uid
-      $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
-          {
-            uid:$scope.UID,
-            Title: $scope.boardName
-          }
-      )
-  }
+  })
+}
+
 })
-
 
 //factories
 .factory ("MainFactory", function (){
