@@ -25,10 +25,14 @@ angular
       controller: "UserCtrl",
       templateUrl: "/partials/userView.html"
     })
+    .when ("/home", {
+      controller: "HomeCtrl",
+      templateUrl: "/partials/home.html"
+    })
 
 
 })
-
+.controller ("HomeCtrl", function(){})
 
 .controller ("RegisterCtrl", function ($http, $scope,$location) {
   $scope.registerHandler = () =>{
@@ -52,20 +56,35 @@ angular
   }
 
 })
-.controller ("LoginCtrl", function ($scope,$location,MainFactory) {
+.controller ("LoginCtrl", function ($scope,$location) {
   $scope.user = {}
   $scope.loginHandler = () => {
-    MainFactory.getUid()
+     firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
+     .then((data)=>{
+      console.log(data)
+      if (data.message) {
 
+      }
+      $scope.UID = data.uid;
+
+     console.log($scope.UID)
+    // MainFactory.getUid()
+    // console.log(MainFactory.getUid())
     alert("Logged in")
     $location.path(`/userView`);
               // $scope.$apply()
-  }
-})
 
-.controller ("UserCtrl", function ($scope,$http){
+   })
+     .catch ((data)=>{alert(data.message)
+        return})
+   }
+ })
+.controller ("UserCtrl", function ($scope,$http,$location){
    // $scope.UID = firebase.auth().currentUser.uid
-  $scope.postToFireBase = () => {
+   if (!firebase.auth().currentUser) {
+    $location.path (`/login`)
+   }
+    $scope.postToFireBase = () => {
 
     // MainFactory.getUid()
 
@@ -90,6 +109,7 @@ angular
           }
       )
   }
+
 })
 
 
@@ -101,14 +121,16 @@ angular
             firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
             .then (()=>{
 
-              $scope.UID = firebase.auth().currentUser.uid
-              return $scope.UID
+             UID = firebase.auth().currentUser.uid
+              return UID
         })
     }
   }
 })
 
-
-
+// window.onload(
+// firebase.auth().onAuthStateChanged(function(user){
+//   if(user) {alert("logged in")}
+// }))
 
 //
