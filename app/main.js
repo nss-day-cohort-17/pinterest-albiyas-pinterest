@@ -39,8 +39,10 @@ angular
 
 .controller ("RegisterCtrl", function ($http, $scope,$location) {
   $scope.registerHandler = () =>{
-    $http.post(`https://pinterest-d2d81.firebaseio.com/.json`)
+    // $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`)
     firebase.auth().createUserWithEmailAndPassword($scope.user.email,$scope.user.password)
+    // MainFactory.getUid()
+
     $location.path(`/createBoard`)
     $scope.$apply
   }
@@ -52,6 +54,7 @@ angular
   $scope.user = {}
   $scope.loginHandler = () => {
     MainFactory.getUid()
+
     alert("Logged in")
     $location.path(`/userView`);
               // $scope.$apply()
@@ -61,13 +64,14 @@ angular
   $scope.postToFireBase = (url,description,imageUrl ) => {
     MainFactory.getUid()
 
-    $http.post(`https://pinterest-d2d81.firebaseio.com/${$scope.UID}.json`,
-          {"Boards":{
+    $http.post(`https://pinterest-d2d81.firebaseio.com/Pins/.json`,
+          {
             uid:$scope.UID,
             url: $scope.url,
             description: $scope.description,
-            image: $scope.imageUrl
-          }}
+            image: $scope.imageUrl,
+            Title: $scope.title
+          }
     )
   }
 })
