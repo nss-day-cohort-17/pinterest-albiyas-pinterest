@@ -47,8 +47,6 @@ angular
     $scope.$apply
   }
 
-
-
 })
 .controller ("LoginCtrl", function ($scope,$location,MainFactory) {
   $scope.user = {}
@@ -61,6 +59,11 @@ angular
   }
 })
 .controller("CreateBoardCtrl", function($scope,$http,MainFactory) {
+
+})
+
+.controller ("UserCtrl", function ($scope,$http,MainFactory){
+
   $scope.postToFireBase = (url,description,imageUrl ) => {
     MainFactory.getUid()
 
@@ -72,11 +75,22 @@ angular
             image: $scope.imageUrl,
             Title: $scope.title
           }
-    )
+        )
+      }
+
+  $scope.boardToFireBase = (boardName) => {
+    MainFactory.getUid()
+      $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
+          {
+            uid:$scope.UID,
+            Title: $scope.boardName
+          }
+      )
   }
 })
 
-.controller ("UserCtrl", function (){})
+
+
 .controller ("MyBoardsCtrl", function (){
 })
 

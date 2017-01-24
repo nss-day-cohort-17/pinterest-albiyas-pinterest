@@ -14,14 +14,14 @@
         <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
         <input type="text" name="Title" placeholder="Title", ng-model="title">
 
-    <input type="button" value="Create Item">
+    <input type="submit" value="Create Item">
 </form>
 
-<form ng-submit="postToFireBase(url,description,imageUrl)">
+<form ng-submit="boardToFireBase(boardName)">
       <div>Board/Rack</div>
 
         <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
 
 
-    <input type="button" value="Create Board">
+    <input type="submit" value="Create Board">
 </form>
