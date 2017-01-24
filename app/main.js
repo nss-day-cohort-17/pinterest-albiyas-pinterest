@@ -39,9 +39,12 @@ angular
 
 .controller ("RegisterCtrl", function ($http, $scope,$location) {
   $scope.registerHandler = () =>{
-    // $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`)
     firebase.auth().createUserWithEmailAndPassword($scope.user.email,$scope.user.password)
-    // MainFactory.getUid()
+    $scope.UID = firebase.auth().currentUser.uid
+    $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
+      uid: $scope.UID,
+      email: $scope.user.email
+    })
 
     $location.path(`/createBoard`)
     $scope.$apply
@@ -60,9 +63,9 @@ angular
               // $scope.$apply()
   }
 })
-.controller("CreateBoardCtrl", function($scope,$http,MainFactory) {
-  $scope.postToFireBase = (url,description,imageUrl ) => {
-    MainFactory.getUid()
+.controller("CreateBoardCtrl", function($scope,$http) {
+  $scope.postToFireBase = () => {
+    $scope.UID = firebase.auth().currentUser.uid
 
     $http.post(`https://pinterest-d2d81.firebaseio.com/Pins/.json`,
           {
@@ -71,12 +74,17 @@ angular
             description: $scope.description,
             image: $scope.imageUrl,
             Title: $scope.title
+
           }
     )
   }
 })
 
-.controller ("UserCtrl", function (){})
+.controller ("UserCtrl", function ($http,$scope){
+  // $http.get(`https://pinterest-d2d81.firebaseio.com/Pins.json?orderBy="UID"&equalTo="${$scope.UID}"`)
+
+  // .then(console.log)
+})
 .controller ("MyBoardsCtrl", function (){
 })
 

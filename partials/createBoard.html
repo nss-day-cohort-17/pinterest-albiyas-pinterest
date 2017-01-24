@@ -1,5 +1,5 @@
 <h1>Welcome to create Board</h1>
-<form ng-submit="postToFireBase(url,description,imageUrl)">
+<form ng-submit="postToFireBase()">
       <div>Link</div>
         <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
       <div>Description:</div>
@@ -8,5 +8,5 @@
         <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
         <input type="text" name="Title" placeholder="Title", ng-model="title">
 
-    <input type="button" value="Create Item">
+    <input type="submit" value="Create Item">
 </form>
