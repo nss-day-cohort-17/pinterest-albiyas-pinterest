@@ -28,33 +28,32 @@ angular
     .when ("/home", {
       controller: "HomeCtrl",
       templateUrl: "/partials/home.html"
+    }).when ("/logout", {
+      controller: "LogoutCtrl",
+      templateUrl: "/partials/logout.html"
     })
 
 
 })
 .controller ("HomeCtrl", function(){})
 
-.controller ("RegisterCtrl", function ($http, $scope,$location) {
+.controller ("RegisterCtrl", function ($http, $scope,$location,MainFactory) {
   $scope.registerHandler = () =>{
-    firebase.auth().createUserWithEmailAndPassword($scope.user.email,$scope.user.password)
-      .then ((data)=>{
-        console.log(data.uid)
-        $scope.UID = data.uid
-        $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
+    MainFactory.getter($scope.user.email,$scope.user.password)
+    .then ((data)=> {
+        console.log(data)
+        $scope.UID = data
+       $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
             uid: $scope.UID,
             email: $scope.user.email
           })
-      })
-    // console.log(data)
+        $location.path(`/userView`)
+        $scope.$apply()
 
 
-    // subFactory.getUid()
 
-
-    $location.path(`/userView`)
-    $scope.$apply
-  }
-
+})
+}
 })
 .controller ("LoginCtrl", function ($scope,$location) {
   $scope.user = {}
@@ -68,26 +67,25 @@ angular
       $scope.UID = data.uid;
 
      console.log($scope.UID)
-    // MainFactory.getUid()
-    // console.log(MainFactory.getUid())
     alert("Logged in")
-    $location.path(`/userView`);
-              // $scope.$apply()
-
    })
      .catch ((data)=>{alert(data.message)
         return})
    }
  })
-.controller ("UserCtrl", function ($scope,$http,$location){
-   // $scope.UID = firebase.auth().currentUser.uid
+.controller ("LogoutCtrl", function (MainFactory){
+  $scope.logout()
+  MainFactory.logout()
+})
+.controller ("UserCtrl", function ($scope,$http,$location,MainFactory){
+
    if (!firebase.auth().currentUser) {
     $location.path (`/login`)
    }
-    $scope.postToFireBase = () => {
-
-    // MainFactory.getUid()
-
+   $scope.UID = MainFactory.getUid()
+   console.log($scope.UID)
+//send pin to firebase
+  $scope.postToFireBase = () => {
     $http.post(`https://pinterest-d2d81.firebaseio.com/Pins/.json`,
           {
             uid:$scope.UID,
@@ -99,9 +97,17 @@ angular
           }
         )
       }
+//get the pins
+$scope.getThePins= () => {
+
+    $http.get(`https://pinterest-d2d81.firebaseio.com/Pins/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
+    .then((firePins) => {
+      console.log(firePins.data)
+      return  $scope.domPin = firePins.data
+    })
 
   $scope.boardToFireBase = () => {
-      $scope.UID = firebase.auth().currentUser.uid
+      // $scope.UID = firebase.auth().currentUser.uid
       $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
           {
             uid:$scope.UID,
@@ -110,20 +116,28 @@ angular
       )
   }
 
-})
 
+
+  }
+})
 
 //factories
 .factory ("MainFactory", function (){
-  return {
-    getUid : () => {
-      return
-            firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
-            .then (()=>{
+  return {getter :(user_email,user_password) => {
+    console.log(user_email,user_password)
+    return firebase.auth().createUserWithEmailAndPassword(user_email,user_password)
+      .then ((data)=>{
+        console.log(data.uid)
+        return UID = data.uid
 
-             UID = firebase.auth().currentUser.uid
-              return UID
-        })
+      })
+    },
+    logout : ()=> {
+      firebase.auth().signOut()
+    },
+
+    getUid:()=> {
+      return UID = firebase.auth().currentUser.uid
     }
   }
 })
