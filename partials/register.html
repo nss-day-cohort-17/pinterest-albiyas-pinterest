@@ -1,8 +1,13 @@
 <h1>Register Page</h1>
 
-<form ng-submit="registerHandler()">
+<div class="row">
+	<form class="col s4 center" ng-submit="registerHandler()">
 
-  <input type="email" placeholder="Email Id" ng-model="user.email">
-  <input type="password" placeholder="Password" ng-model="user.password">
-  <input type="submit"  value="Register">
-</form>
+
+	  <input type="email" placeholder="Email Id" ng-model="user.email">
+	  <input type="password" placeholder="Password" ng-model="user.password">
+	  <input type="submit"  value="Register">
+	  <button ng-click="logout()">Logout</button>
+	</form>
+
+</div>
