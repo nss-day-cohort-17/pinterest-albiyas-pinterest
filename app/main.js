@@ -25,58 +25,65 @@ angular
       controller: "UserCtrl",
       templateUrl: "/partials/userView.html"
     })
+    .when ("/home", {
+      controller: "HomeCtrl",
+      templateUrl: "/partials/home.html"
+    }).when ("/logout", {
+      controller: "LogoutCtrl",
+      templateUrl: "/partials/logout.html"
+    })
 
 
 })
+.controller ("HomeCtrl", function(){})
 
-
-.controller ("RegisterCtrl", function ($http, $scope,$location) {
+.controller ("RegisterCtrl", function ($http, $scope,$location,MainFactory) {
   $scope.registerHandler = () =>{
-    firebase.auth().createUserWithEmailAndPassword($scope.user.email,$scope.user.password)
-      .then ((data)=>{
-        console.log(data.uid)
-        $scope.UID = data.uid
-        $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
+    MainFactory.getter($scope.user.email,$scope.user.password)
+    .then ((data)=> {
+        console.log(data)
+        $scope.UID = data
+       $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
             uid: $scope.UID,
             email: $scope.user.email
           })
-      })
+        $location.path(`/userView`)
+        $scope.$apply()
 
 
-    $location.path(`/userView`)
-    $scope.$apply
-  }
-$scope.logout = ()=> {
-      firebase.auth().signOut()
-
-    }
 
 })
-.controller ("LoginCtrl", function ($scope,$location,MainFactory) {
+}
+})
+.controller ("LoginCtrl", function ($scope,$location) {
   $scope.user = {}
   $scope.loginHandler = () => {
-    MainFactory.getUid()
+     firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
+     .then((data)=>{
+      console.log(data)
+      if (data.message) {
 
+      }
+      $scope.UID = data.uid;
+
+     console.log($scope.UID)
     alert("Logged in")
-    // $location.path(`/userView`);
-              // $scope.$apply()
-  }
+   })
+     .catch ((data)=>{alert(data.message)
+        return})
+   }
+ })
+.controller ("LogoutCtrl", function (MainFactory){
+  $scope.logout()
+  MainFactory.logout()
 })
+.controller ("UserCtrl", function ($scope,$http,$location,MainFactory){
 
-.controller ("UserCtrl", function ($scope,$http,$location){
-    $scope.logout = ()=> {
-      firebase.auth().signOut()
-    }
-    //send newly created board to firebase
-  $scope.boardToFireBase = () => {
-      $scope.UID = firebase.auth().currentUser.uid
-      $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
-          {
-            uid:$scope.UID,
-            Title: $scope.boardName
-          })
-
-  }
+   if (!firebase.auth().currentUser) {
+    $location.path (`/login`)
+   }
+   $scope.UID = MainFactory.getUid()
+   console.log($scope.UID)
 //send pin to firebase
   $scope.postToFireBase = () => {
     $http.post(`https://pinterest-d2d81.firebaseio.com/Pins/.json`,
@@ -92,32 +99,52 @@ $scope.logout = ()=> {
       }
 //get the pins
 $scope.getThePins= () => {
-    $http.get('https://pinterest-d2d81.firebaseio.com/Pins/.json','')
+
+    $http.get(`https://pinterest-d2d81.firebaseio.com/Pins/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
     .then((firePins) => {
       console.log(firePins.data)
-    return  $scope.domPin = firePins.data
+      return  $scope.domPin = firePins.data
+    })
 
-  })
-}
+  $scope.boardToFireBase = () => {
+      // $scope.UID = firebase.auth().currentUser.uid
+      $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
+          {
+            uid:$scope.UID,
+            Title: $scope.boardName
+          }
+      )
+  }
 
+
+
+  }
 })
 
 //factories
 .factory ("MainFactory", function (){
-  return {
-    getUid : () => {
-      return
-            firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
-            .then (()=>{
+  return {getter :(user_email,user_password) => {
+    console.log(user_email,user_password)
+    return firebase.auth().createUserWithEmailAndPassword(user_email,user_password)
+      .then ((data)=>{
+        console.log(data.uid)
+        return UID = data.uid
 
-              $scope.UID = firebase.auth().currentUser.uid
-              return $scope.UID
-        })
+      })
+    },
+    logout : ()=> {
+      firebase.auth().signOut()
+    },
+
+    getUid:()=> {
+      return UID = firebase.auth().currentUser.uid
     }
   }
 })
 
-
-
+// window.onload(
+// firebase.auth().onAuthStateChanged(function(user){
+//   if(user) {alert("logged in")}
+// }))
 
 //
