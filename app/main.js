@@ -8,9 +8,12 @@ firebase.initializeApp({
 
 
 
-angular
-.module ("groupApp", ["ngRoute"])
-.config (($routeProvider,$locationProvider) => {
+var pinterestApp = angular
+.module ("groupApp", ["ngRoute"]);
+
+
+// New file
+pinterestApp.config (function($routeProvider,$locationProvider) {
   $locationProvider.hashPrefix("")
   $routeProvider
     .when ("/register", {
@@ -29,34 +32,51 @@ angular
       controller: "HomeCtrl",
       templateUrl: "/partials/home.html"
     })
+    .otherwise('/login');
+
+});
 
 
-})
-.controller ("HomeCtrl", function(){})
+// New file
+pinterestApp.controller ("HomeCtrl", function($scope){
+  $scope.words = "Hello world"
 
-.controller ("RegisterCtrl", function ($http, $scope,$location) {
-  $scope.registerHandler = () =>{
-    firebase.auth().createUserWithEmailAndPassword($scope.user.email,$scope.user.password)
-      .then ((data)=>{
-        console.log(data.uid)
-        $scope.UID = data.uid
-        $http.post(`https://pinterest-d2d81.firebaseio.com/Users/.json`,{
-            uid: $scope.UID,
-            email: $scope.user.email
-          })
-      })
-    // console.log(data)
+ 
 
 
-    // subFactory.getUid()
 
 
-    $location.path(`/userView`)
-    $scope.$apply
+});
+
+
+
+
+pinterestApp.controller ("LoginCtrl", function ($scope,$location) {
+  $scope.goRegister = function() {
+    console.log("go");
+    $('#modal1').modal('close');
+    $location.path('/register')
+
   }
+  //modal logic
+  $('#modal1').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      // opacity: .5, // Opacity of modal background
+      in_duration: 300, // Transition in duration
+      out_duration: 200, // Transition out duration
+      starting_top: '4%', // Starting top style attribute
+      ending_top: '10%', // Ending top style attribute
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        console.log(modal, trigger);
+      },
+      complete: function() { 
+        console.log('close');
 
-})
-.controller ("LoginCtrl", function ($scope,$location) {
+      } // Callback for Modal close
+    }
+  );
+
+
   $scope.user = {}
   $scope.loginHandler = () => {
      firebase.auth().signInWithEmailAndPassword($scope.user.email,$scope.user.password)
@@ -78,8 +98,8 @@ angular
      .catch ((data)=>{alert(data.message)
         return})
    }
- })
-.controller ("UserCtrl", function ($scope,$http,$location){
+ });
+pinterestApp.controller ("UserCtrl", function ($scope,$http,$location){
    // $scope.UID = firebase.auth().currentUser.uid
    if (!firebase.auth().currentUser) {
     $location.path (`/login`)
@@ -111,6 +131,8 @@ angular
   }
 
 })
+
+
 
 
 //factories

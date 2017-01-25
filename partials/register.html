@@ -1,6 +1,8 @@
 <h1>Register Page</h1>
 
-<form ng-submit="registerHandler()">
+
+<div class="row">
+<form class="col s4 center" ng-submit="registerHandler()">
 
   <input type="email" placeholder="Email Id" ng-model="user.email">
   <input type="password" placeholder="Password" ng-model="user.password">
@@ -8,3 +10,4 @@
 </form>
 
 <button ng-click="logout()">Logout</button>
+</div>
