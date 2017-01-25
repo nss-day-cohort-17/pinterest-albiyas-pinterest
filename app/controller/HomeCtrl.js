@@ -1,0 +1,1 @@
+pinterestApp.controller ("HomeCtrl", function(){})
