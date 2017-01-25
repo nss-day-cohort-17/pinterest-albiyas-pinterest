@@ -73,9 +73,11 @@ angular
         return})
    }
  })
-.controller ("LogoutCtrl", function (MainFactory){
-  $scope.logout()
+.controller ("LogoutCtrl", function ($location,$scope,MainFactory){
+  $scope.logout = () =>
   MainFactory.logout()
+  $location.path('/login')
+  // $scope.$apply()
 })
 .controller ("UserCtrl", function ($scope,$http,$location,MainFactory){
 
