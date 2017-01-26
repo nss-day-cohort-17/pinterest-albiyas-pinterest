@@ -1,12 +1,12 @@
 {
-  "name": "pinterest-albiyas-pinterest",
-  "homepage": "https://github.com/nss-day-cohort-17/pinterest-albiyas-pinterest",
+  "name": "y",
+  "homepage": "y",
   "authors": [
-    "krishnapriya <krishnapriyakamesh@gmail.com>"
+    "y"
   ],
-  "description": "",
-  "main": "",
-  "license": "MIT",
+  "description": "y",
+  "main": "y",
+  "license": "y",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -20,5 +20,9 @@
     "angular-route": "^1.6.1",
     "materialize": "^0.98.0",
     "lodash": "^4.17.4"
-  }
+  },
+  "keywords": [
+    "y"
+  ],
+  "private": true
 }

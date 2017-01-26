@@ -2,7 +2,7 @@
 
   <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red center-align"><i class="material-icons">+</i></a>
 
-
+ <a data-target="boardModal" class="btn-floating btn-large waves-effect waves-light blue center-align"><i class="material-icons">B</i></a>
 <!-- Modal Structure -->
 <div id="modalPin" class="modal">
     <div class="modal-content">
@@ -19,6 +19,7 @@
       </form>
     </div>
 </div>  <!-- end pin modal -->
+
 
 
 <!-- Pin card -->
@@ -43,20 +44,20 @@
       </div>
     </div>
   </div>
+</div>
   <!-- end pin card -->
 
+
+
   <!-- Board Modal Structure -->
-  <div id="boardModal" class="modal bottom-sheet">
+<div id="boardModal" class="modal  bottom-sheet">
     <div class="modal-content">
       <h4>Your Boards</h4>
-      <form ng-submit="boardToFireBase(boardName)">
-      <div>Board/Rack</div>
-
-        <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
-
-
-    <input type="submit" value="Create Board">
-      </form>
+        <form ng-submit="boardToFireBase(boardName)">
+          <div>Board/Rack</div>
+            <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+            <input type="submit" value="Create Board">
+        </form>
         <div>
           <ul>
             <li ng-repeat="board in boards">
@@ -64,19 +65,18 @@
             </li>
           </ul>
         </div>
-
     </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-
-
-
-
-
-
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
 </div>
+
+
+
+
+
+
+
 
 
 </div>
