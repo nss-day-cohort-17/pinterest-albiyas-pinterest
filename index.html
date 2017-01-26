@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>ALBIYA'S</title>
-  <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/lib/materialize/dist/css/materialize.css">
   <link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
   <body ng-app="groupApp">
-  <nav ng-controller="LogoutCtrl" role="navigation" class="navbar navbar-default">
+ <!--  <nav ng-controller="LogoutCtrl" role="navigation" class="navbar navbar-default">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#/home">Home</a></li>
                 <li><a href="#/userView">My Collections</a></li>
@@ -20,14 +20,36 @@
             </ul>
         </div>
     </nav>
+ -->
 
-    <div ng-view></div>
+   <nav>
+    <div class="nav-wrapper" ng-controller="LogoutCtrl">
+      <a href="#" class="brand-logo right">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/userView">My Collections</a></li>
+        <li><a href="#/login">Login</a></li>
+        <li><a ng-click="logout()" href="#/login">Logout</a></li>
+
+      </ul>
+    </div>
+  </nav>
+  
+  <ng-view>
+  </ng-view>
+    
 
 
     <!-- <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script> -->
+    
+
+
+    <script src="/lib/jquery/dist/jquery.js"></script>
     <script src="/lib/angular/angular.min.js"></script>
     <script src="/lib/angular-route/angular-route.min.js"></script>
     <script src="/lib/firebase/firebase.js"></script>
+    <script src="/lib/materialize/dist/js.materialize.js.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
     <script src="/app/main.js"></script>
     <script src="/app/factories/mainfactory.js"></script>
     <script src="/app/controller/RegisterCtrl.js"></script>

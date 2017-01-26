@@ -1,7 +1,7 @@
 
 
 
-const pinterestApp = angular
+var pinterestApp = angular
 .module ("groupApp", ["ngRoute"])
 .config (($routeProvider,$locationProvider) => {
   firebase.initializeApp({
