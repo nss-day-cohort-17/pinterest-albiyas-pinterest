@@ -60,7 +60,7 @@ $scope.addBoardId = (key) => {
 
 //Materialize
   //modal logic
-    $('#boardModal').modal('open');
+
   $('#modalPin').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
       // opacity: .5, // Opacity of modal background
@@ -76,6 +76,7 @@ $scope.addBoardId = (key) => {
 
       } // Callback for Modal close
     })
+
   $('#boardModal').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
       // opacity: .5, // Opacity of modal background
