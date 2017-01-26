@@ -10,18 +10,7 @@ pinterestApp.controller ("RegisterCtrl", function ($http, $scope,$location,MainF
     })
         $location.path(`/userView`)
         $scope.$apply()
-
-
-
 })
 
 }
-
-
-
-
-
-
-
-
 })

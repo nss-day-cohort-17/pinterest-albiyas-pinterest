@@ -35,7 +35,7 @@ $scope.goRegister = function() {
       $scope.UID = data.uid;
 
      console.log($scope.UID)
-    alert("Logged in")
+    Materialize.toast('Logged in ', 1000)
    })
      .catch ((data)=>{alert(data.message)
         return})
