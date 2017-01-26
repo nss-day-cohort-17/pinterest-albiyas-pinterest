@@ -1,11 +1,6 @@
-<nav>
-  <ul>
-    <li><a href="#/myBoards">My Boards</a></li>
-    <li><a href="#/createBoard">Create New Board</a></li>
-  </ul>
-</nav>
+<div class="container">
 
-  <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">+</i></a>
+  <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red center-align"><i class="material-icons">+</i></a>
 
 
 <!-- Modal Structure -->
@@ -23,16 +18,10 @@
           <input type="submit" value="Create Item">
       </form>
     </div>
-</div>
-<form ng-submit="boardToFireBase(boardName)">
-      <div>Board/Rack</div>
-
-        <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+</div>  <!-- end pin modal -->
 
 
-    <input type="submit" value="Create Board">
-</form>
-
+<!-- Pin card -->
 
 <div ng-click="getThePins()">stuff</div>
 <div ng-repeat="pin in domPin">
@@ -54,7 +43,33 @@
       </div>
     </div>
   </div>
+  <!-- end pin card -->
 
+  <!-- Board Modal Structure -->
+  <div id="boardModal" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Your Boards</h4>
+      <form ng-submit="boardToFireBase(boardName)">
+      <div>Board/Rack</div>
+
+        <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+
+
+    <input type="submit" value="Create Board">
+      </form>
+        <div>
+          <ul>
+            <li ng-repeat="board in boards">
+             <button ng-click = addBoardId() >{{board.Title}}</button>
+            </li>
+          </ul>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 
 
 
@@ -62,10 +77,6 @@
 
 
 </div>
-<div>
-  <ul>
-    <li ng-repeat="board in boards">
-     <button ng-click = addBoardId() >{{board.Title}}</button>
-    </li>
-  </ul>
+
+
 </div>
