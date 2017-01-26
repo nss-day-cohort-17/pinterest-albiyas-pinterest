@@ -2,7 +2,7 @@
 
   <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red center-align"><i class="material-icons">+</i></a>
 
- <a data-target="boardModal" class="btn-floating btn-large waves-effect waves-light blue center-align"><i class="material-icons">B</i></a>
+ <a ng-click = "userBoards(key,value)" data-target="boardModal"  class="btn-floating btn-large waves-effect waves-light blue center-align"><i class="material-icons">B</i>All Boards</a>all Boards
 <!-- Modal Structure -->
 <div id="modalPin" class="modal">
     <div class="modal-content">
@@ -24,7 +24,8 @@
 
 <!-- Pin card -->
 
-<div ng-click="getThePins()">stuff</div>
+<div ng-click="getThePins()">All Pins</div>
+
 
 <!-- <div ng-repeat="pin in domPin"> -->
 <div ng-repeat= "(key, value) in domPin">
@@ -66,8 +67,9 @@
         </form>
         <div>
           <ul>
+          <!-- This is where the boards are created -->
             <li ng-repeat="(key, value) in boards">
-
+<button ng-click="boardDelete(key)">Delete This board</button>
 
              <button class="btn col s8" ng-click = addBoardId(key) >{{value.Title}}</button>
 

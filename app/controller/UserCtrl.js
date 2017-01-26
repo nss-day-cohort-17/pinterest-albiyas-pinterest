@@ -26,7 +26,8 @@ $scope.getThePins = () => {
       console.log(firePins.data)
       return  $scope.domPin = firePins.data
     })
-    $scope.userBoards = (key,value) => {
+}
+$scope.userBoards = (key,value) => {
     $http.get (`https://pinterest-d2d81.firebaseio.com/Boards/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
     .then ((data)=>{
       $scope.boards = data.data
@@ -36,13 +37,15 @@ $scope.getThePins = () => {
       $scope.key = key//key from pin
 
     }
-
-
-
+$scope.boardDelete =(key) => {
+  console.log("board key", key)
+  $http.delete(`https://pinterest-d2d81.firebaseio.com/Boards/${key}.json`)
+  $scope.$apply()
 }
 $scope.deletePin = (key) => {
   console.log("delete this", key )
   $http.delete(`https://pinterest-d2d81.firebaseio.com/Pins/${key}.json`)
+   $scope.$apply()
 }
 $scope.addBoardId = (key) => {
           $scope.keyFromBoard = key
