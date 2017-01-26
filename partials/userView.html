@@ -5,8 +5,7 @@
   </ul>
 </nav>
 
-
-<form ng-submit="postToFireBase()">
+<form ng-submit="postToFireBase(url,description,imageUrl)">
       <div>Link</div>
         <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
       <div>Description:</div>
@@ -28,11 +27,38 @@
 </form>
 
 
-<!--
+<div ng-click="getThePins()">stuff</div>
+<div ng-repeat="pin in domPin">
+   <div class="col s12 m7">
+
+    <h2 class="header">{{pin.Title}}</h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="{{pin.image}}" alt="Pin Image">
+        <button ng-click = addPin(pin)>Add Pin</button>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>{{pin.description}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{{pin.url}}">Go</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
 <div>
   <ul>
-    <li ng-repeat ="boardObj in boardObjs>{{boardObj.Title}}
-    <a href="{{boardObj.url}}"><img src="{{boardObj.image}}"></a>
-
+    <li ng-repeat="board in boards">
+     <button ng-click = addBoardId() >{{board.Title}}</button>
+    </li>
   </ul>
-                                            </div> -->
+</div>
