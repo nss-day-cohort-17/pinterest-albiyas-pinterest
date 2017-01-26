@@ -1,31 +1,27 @@
-<nav>
-  <ul>
-    <li><a href="#/myBoards">My Boards</a></li>
-    <li><a href="#/createBoard">Create New Board</a></li>
-  </ul>
-</nav>
+<div class="container">
 
-<form ng-submit="postToFireBase(url,description,imageUrl)">
-      <div>Link</div>
-        <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
-      <div>Description:</div>
-        <input type="text" ng-model="description" name="description" placeholder="Describe your card">
-      <div>have a photo?</div>
-        <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
-        <input type="text" name="Title" placeholder="Title", ng-model="title">
-
-    <input type="submit" value="Create Item">
-</form>
-
-<form ng-submit="boardToFireBase(boardName)">
-      <div>Board/Rack</div>
-
-        <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+  <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red center-align"><i class="material-icons">+</i></a>
 
 
-    <input type="submit" value="Create Board">
-</form>
+<!-- Modal Structure -->
+<div id="modalPin" class="modal">
+    <div class="modal-content">
+      <form ng-submit="postToFireBase(url,description,imageUrl)">
+            <div>Link</div>
+              <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
+            <div>Description:</div>
+              <input type="text" ng-model="description" name="description" placeholder="Describe your card">
+            <div>have a photo?</div>
+              <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
+              <input type="text" name="Title" placeholder="Title", ng-model="title">
 
+          <input type="submit" value="Create Item">
+      </form>
+    </div>
+</div>  <!-- end pin modal -->
+
+
+<!-- Pin card -->
 
 <div ng-click="getThePins()">stuff</div>
 <div ng-repeat="pin in domPin">
@@ -47,7 +43,33 @@
       </div>
     </div>
   </div>
+  <!-- end pin card -->
 
+  <!-- Board Modal Structure -->
+  <div id="boardModal" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Your Boards</h4>
+      <form ng-submit="boardToFireBase(boardName)">
+      <div>Board/Rack</div>
+
+        <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+
+
+    <input type="submit" value="Create Board">
+      </form>
+        <div>
+          <ul>
+            <li ng-repeat="board in boards">
+             <button ng-click = addBoardId() >{{board.Title}}</button>
+            </li>
+          </ul>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 
 
 
@@ -55,10 +77,6 @@
 
 
 </div>
-<div>
-  <ul>
-    <li ng-repeat="board in boards">
-     <button ng-click = addBoardId() >{{board.Title}}</button>
-    </li>
-  </ul>
+
+
 </div>
