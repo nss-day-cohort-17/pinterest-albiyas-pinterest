@@ -91,7 +91,7 @@
      <div class="modal-content">
 
       <h4>Click a board to display your pins</h4>
-        <form ng-submit="">
+        <form ng-submit="boardToFireBase(boardName)">
 
             <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
             <input type="submit" value="Create Board">
