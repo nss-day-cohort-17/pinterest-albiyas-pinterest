@@ -25,6 +25,7 @@
 <!-- Pin card -->
 
 <div ng-click="getThePins()">stuff</div>
+
 <!-- <div ng-repeat="pin in domPin"> -->
 <div ng-repeat= "(key, value) in domPin">
    <div class="col s12 m7">
@@ -33,11 +34,13 @@
     <div class="card horizontal">
       <div class="card-image">
         <img src="{{value.image}}" alt="Pin Image">
-        <button ng-click = addPin(key,value)>Add Pin</button>
+        <button data-target="boardModal" ng-click = userBoards(key,value)>Add Pin</button>
       </div>
         <div class="card-stacked">
           <div class="card-content">
-          <p>{{value.description}}</p>
+
+          <p>{{value.description}}</p>          
+          <button ng-click="deletePin(key)">Delete Pin</button>
 
         </div>
         <div class="card-action">
@@ -50,9 +53,6 @@
   </div>
 </div>
   <!-- end pin card -->
-
-
-
   <!-- Board Modal Structure -->
 
   <div id="boardModal" class="modal bottom-sheet">
@@ -68,22 +68,13 @@
           <ul>
             <li ng-repeat="(key, value) in boards">
 
-             <button ng-click = addBoardId(key) >{{value.Title}}</button>
-            }
-            }
+
+             <button class="btn col s8" ng-click = addBoardId(key) >{{value.Title}}</button>
+
             </li>
           </ul>
         </div>
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
 </div>
