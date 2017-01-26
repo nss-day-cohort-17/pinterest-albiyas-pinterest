@@ -1,3 +1,6 @@
+<div ng-repeat = "data in data">
+  <img src={{data.image}}>
+</div>
 <div class="container">
 
   <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red center-align"><i class="material-icons">+</i></a>
@@ -39,11 +42,13 @@
       </div>
         <div class="card-stacked">
           <div class="card-content">
-          <p>{{pin.description}}</p>
-<button ng-click="deletePin(key)">Delete Pin</button>
+
+          <p>{{value.description}}</p>
+          <button ng-click="deletePin(key)">Delete Pin</button>
+
         </div>
         <div class="card-action">
-          <a href="{{value.url}}">Go</a>
+          <a target="_blank" href="{{value.url}}">Go</a>
 
         </div>
       </div>
@@ -52,9 +57,6 @@
   </div>
 </div>
   <!-- end pin card -->
-
-
-
   <!-- Board Modal Structure -->
 
   <div id="boardModal" class="modal bottom-sheet">
