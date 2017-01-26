@@ -1,8 +1,30 @@
-<h1>Login Page</h1>
+<div>
+	<h1>Login Page</h1>
+
+  <!-- <a class="waves-effect waves-light btn" href="#modal1">Modal</a> -->
+  <button  ng-click="" data-target="modal1" class="btn">Login</button>
+
+</div>
 
 
-<form ng-submit="loginHandler()">
-  <input type="email" placeholder="Email Id" ng-model="user.email">
-  <input type="password" placeholder="Password" ng-model="user.password">
-  <input type="submit"  value="Login">
-</form>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <form ng-submit="loginHandler()">
+          	<input type="email" placeholder="Email Id" ng-model="user.email">
+          	<input type="password" placeholder="Password" ng-model="user.password">
+          	<input type="submit"  value="Login">
+	      </form>
+    </div>
+<div class="modal-footer">
+      <!-- <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a> -->
+
+<p>Not registered?</p>
+<button ng-click="goRegister()" class="btn">Click here</button>
+
+
+
+
+  </div>
+</div>
