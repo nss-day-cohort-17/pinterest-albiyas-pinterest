@@ -5,18 +5,23 @@
   </ul>
 </nav>
 
-<form ng-submit="postToFireBase(url,description,imageUrl)">
-      <div>Link</div>
-        <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
-      <div>Description:</div>
-        <input type="text" ng-model="description" name="description" placeholder="Describe your card">
-      <div>have a photo?</div>
-        <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
-        <input type="text" name="Title" placeholder="Title", ng-model="title">
 
-    <input type="submit" value="Create Item">
-</form>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <form ng-submit="postToFireBase(url,description,imageUrl)">
+            <div>Link</div>
+              <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
+            <div>Description:</div>
+              <input type="text" ng-model="description" name="description" placeholder="Describe your card">
+            <div>have a photo?</div>
+              <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
+              <input type="text" name="Title" placeholder="Title", ng-model="title">
 
+          <input type="submit" value="Create Item">
+      </form>
+    </div>
+</div>
 <form ng-submit="boardToFireBase(boardName)">
       <div>Board/Rack</div>
 
