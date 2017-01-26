@@ -19,15 +19,35 @@ pinterestApp.controller ("UserCtrl", function ($scope,$http,$location,MainFactor
         )
       }
 //get the pins
-$scope.getThePins= () => {
+$scope.getThePins = () => {
 
     $http.get(`https://pinterest-d2d81.firebaseio.com/Pins/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
     .then((firePins) => {
       console.log(firePins.data)
       return  $scope.domPin = firePins.data
     })
+    $scope.addPin = () => {
+    $http.get (`https://pinterest-d2d81.firebaseio.com/Boards/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
+    .then ((data)=>{
+      $scope.boards = data.data
+      console.log($scope.boards)
+    })
+  }
 
-  $scope.boardToFireBase = () => {
+
+  $scope.addBoardId = (pin) => {
+        for (var key in pin ) {
+          console.log(key)
+        }
+         $http.patch(`https://pinterest-d2d81.firebaseio.com/Pins/${key}.json`,
+
+        {
+
+          boardId: $scope.keyFromBoard
+        })
+
+  }
+   $scope.boardToFireBase = () => {
       // $scope.UID = firebase.auth().currentUser.uid
       $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
           {
@@ -36,6 +56,6 @@ $scope.getThePins= () => {
           }
       )
   }
+}
 
-  }
 })
