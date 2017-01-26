@@ -34,11 +34,11 @@
         <img src="{{pin.image}}" alt="Pin Image">
         <button ng-click = addPin(pin)>Add Pin</button>
       </div>
-      <div class="card-stacked">
-        <div class="card-content">
+        <div class="card-stacked">
+          <div class="card-content">
           <p>{{pin.description}}</p>
-        </div>
-        <div class="card-action">
+          </div>
+          <div class="card-action">
           <a href="{{pin.url}}">Go</a>
         </div>
       </div>
@@ -54,7 +54,7 @@
     <div class="modal-content">
       <h4>Your Boards</h4>
         <form ng-submit="boardToFireBase(boardName)">
-          <div>Board/Rack</div>
+
             <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
             <input type="submit" value="Create Board">
         </form>
