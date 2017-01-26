@@ -18,7 +18,7 @@
               <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
               <input type="text" name="Title" placeholder="Title", ng-model="title">
 
-          <input type="submit" value="Create Item">
+          <input id="closeModal" type="submit" value="Create Item">
       </form>
     </div>
 </div>  <!-- end pin modal -->
@@ -38,7 +38,7 @@
     <div class="card horizontal">
       <div class="card-image">
         <img src="{{value.image}}" alt="Pin Image">
-        <button class="close-reveal-modal" data-target="boardModal" ng-click = userBoards(key,value)>Add Pin to Board</button>
+        <button  data-target="boardModal" ng-click = userBoards(key,value)>Add Pin</button>
       </div>
         <div class="card-stacked">
           <div class="card-content">
@@ -48,7 +48,11 @@
 
         </div>
         <div class="card-action">
+
+          <a href="{{value.url}}">Go to Link</a>
+
           <a target="_blank" href="{{value.url}}">Go</a>
+
 
         </div>
       </div>
