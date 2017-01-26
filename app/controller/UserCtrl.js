@@ -67,7 +67,9 @@ $scope.boardToFireBase = () => {
   }
 
 //Materialize
-  // $('#addModal').modal('close')
+  $('#closeModal').click(()=>{
+    $('#modalPin').modal('close')
+  })
 
   $('#modalPin').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
