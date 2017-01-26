@@ -35,18 +35,32 @@ $scope.getThePins = () => {
   }
 
 
-  $scope.addBoardId = (pin) => {
-        for (var key in pin ) {
-          console.log(key)
-        }
-         $http.patch(`https://pinterest-d2d81.firebaseio.com/Pins/${key}.json`,
 
+}
+$scope.addBoardId = () => {
+  $http.get(`https://pinterest-d2d81.firebaseio.com/Boards/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
+    .then((response)=>{
+      boards = response.data
+      $scope.key =_.findKey(boards,function (value,key){
+        return key
+      })
+        console.log($scope.key)
+        $http.get(`https://pinterest-d2d81.firebaseio.com/Pins/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
+        .then ((data)=>{
+          console.log(data)
+          newPin = data.data
+          $scope.keyFromPin = _.findKey(newPin, function(value,key){
+            return key
+          })
+
+        $http.patch(`https://pinterest-d2d81.firebaseio.com/Pins/${$scope.keyFromPin}.json`,
         {
-
-          boardId: $scope.keyFromBoard
+          boardId : $scope.key
         })
+      })
+      })
+     }
 
-  }
    $scope.boardToFireBase = () => {
       // $scope.UID = firebase.auth().currentUser.uid
       $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
@@ -56,7 +70,6 @@ $scope.getThePins = () => {
           }
       )
   }
-}
 
 //Materialize
   //modal logic

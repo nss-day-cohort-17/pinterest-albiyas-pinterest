@@ -1,0 +1,24 @@
+{
+  "name": "pinterest-albiyas-pinterest",
+  "homepage": "https://github.com/nss-day-cohort-17/pinterest-albiyas-pinterest",
+  "authors": [
+    "krishnapriya <krishnapriyakamesh@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "firebase": "^3.6.6",
+    "angular-route": "^1.6.1",
+    "materialize": "^0.98.0",
+    "lodash": "^4.17.4"
+  }
+}
