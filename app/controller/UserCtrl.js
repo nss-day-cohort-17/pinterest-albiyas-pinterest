@@ -5,6 +5,11 @@ pinterestApp.controller ("UserCtrl", function ($scope,$http,$location,MainFactor
    // }
    $scope.UID = MainFactory.getUid()
    console.log($scope.UID)
+   $http.get(`https://pinterest-d2d81.firebaseio.com/Pins/.json?orderBy="uid"&equalTo="${$scope.UID}"`)
+   .then((data)=>{
+    $scope.data = data.data
+    console.log($scope.data)
+   })
 //send pin to firebase
   $scope.postToFireBase = () => {
     $http.post(`https://pinterest-d2d81.firebaseio.com/Pins/.json`,
