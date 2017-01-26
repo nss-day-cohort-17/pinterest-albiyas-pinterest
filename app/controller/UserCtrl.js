@@ -74,7 +74,7 @@ $scope.addBoardId = (key) => {
   }
 
 //Materialize
-  //modal logic
+  // $('#addModal').modal('close')
 
   $('#modalPin').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal

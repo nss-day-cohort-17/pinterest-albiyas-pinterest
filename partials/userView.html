@@ -38,7 +38,7 @@
     <div class="card horizontal">
       <div class="card-image">
         <img src="{{value.image}}" alt="Pin Image">
-        <button data-target="boardModal" ng-click = userBoards(key,value)>Add Pin</button>
+        <button class="close-reveal-modal" data-target="boardModal" ng-click = userBoards(key,value)>Add Pin to Board</button>
       </div>
         <div class="card-stacked">
           <div class="card-content">
@@ -70,11 +70,11 @@
         </form>
         <div>
           <ul>
-          <!-- This is where the boards are created -->
+ <!-- This is where the boards are created -->
             <li ng-repeat="(key, value) in boards">
 <button ng-click="boardDelete(key)">Delete This board</button>
 
-             <button class="btn col s8" ng-click = addBoardId(key) >{{value.Title}}</button>
+             <button class="btn col s8"  >{{value.Title}}</button>
 
             </li>
           </ul>
@@ -82,4 +82,5 @@
     </div>
 
 </div>
+
 </div>
