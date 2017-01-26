@@ -38,8 +38,10 @@
       </div>
         <div class="card-stacked">
           <div class="card-content">
-          <p>{{pin.description}}</p>
-<button ng-click="deletePin(key)">Delete Pin</button>
+
+          <p>{{value.description}}</p>          
+          <button ng-click="deletePin(key)">Delete Pin</button>
+
         </div>
         <div class="card-action">
           <a href="{{value.url}}">Go</a>
@@ -51,9 +53,6 @@
   </div>
 </div>
   <!-- end pin card -->
-
-
-
   <!-- Board Modal Structure -->
 
   <div id="boardModal" class="modal bottom-sheet">
@@ -78,13 +77,4 @@
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
 </div>
