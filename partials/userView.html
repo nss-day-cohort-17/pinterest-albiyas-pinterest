@@ -5,7 +5,7 @@
 
   <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red center-align"><i class="material-icons">+</i></a>
 
- <a ng-click = "userBoards(key,value)" data-target="boardModal"  class="btn-floating btn-large waves-effect waves-light blue center-align"><i class="material-icons">B</i>All Boards</a>all Boards
+ <a ng-click = "userBoards(key,value)" data-target="listOnlyPinsBoard"  class="btn-floating btn-large waves-effect waves-light blue center-align"><i class="material-icons">B</i>All Boards</a>all Boards
 <!-- Modal Structure -->
 <div id="modalPin" class="modal">
     <div class="modal-content">
@@ -66,8 +66,32 @@
   <div id="boardModal" class="modal bottom-sheet">
      <div class="modal-content">
 
-      <h4>Your Boards</h4>
+      <h4>Add Pin to which board?</h4>
         <form ng-submit="boardToFireBase(boardName)">
+
+            <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+            <input type="submit" value="Create Board">
+        </form>
+        <div>
+          <ul>
+ <!-- This is where the boards are created -->
+            <li ng-repeat="(key, value) in boards">
+<button ng-click="boardDelete(key)">Delete This board</button>
+
+             <button class="btn col s8"  >{{value.Title}}</button>
+
+            </li>
+          </ul>
+        </div>
+    </div>
+
+</div>
+<!-- This modal to show the pins -->
+<div id="listOnlyPinsBoard" class="modal bottom-sheet">
+     <div class="modal-content">
+
+      <h4>Click a board to display your pins</h4>
+        <form ng-submit="">
 
             <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
             <input type="submit" value="Create Board">
