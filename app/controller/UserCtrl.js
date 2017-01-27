@@ -1,4 +1,4 @@
-pinterestApp.controller ("UserCtrl", function ($scope,$http,$location,MainFactory){
+pinterestApp.controller ("UserCtrl", function ($route,$scope,$http,$location,MainFactory){
 $(".button-collapse").sideNav();
    // if (!firebase.auth().currentUser) {
    //  $location.path (`/login`)
@@ -45,12 +45,12 @@ $scope.userBoards = (key,value) => {
 $scope.boardDelete =(key) => {
   console.log("board key", key)
   $http.delete(`https://pinterest-d2d81.firebaseio.com/Boards/${key}.json`)
-  $scope.$apply()
+
 }
 $scope.deletePin = (key) => {
   console.log("delete this", key )
   $http.delete(`https://pinterest-d2d81.firebaseio.com/Pins/${key}.json`)
-   $scope.$apply()
+   $route.reload()
 }
 $scope.addBoardId = (key) => {
           $scope.keyFromBoard = key
@@ -63,8 +63,7 @@ $scope.addBoardId = (key) => {
         }
 
 
-
-   $scope.boardToFireBase = () => {
+$scope.boardToFireBase = () => {
 
       $http.post(`https://pinterest-d2d81.firebaseio.com/Boards/.json`,
           {
