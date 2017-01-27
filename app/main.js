@@ -44,7 +44,7 @@ var pinterestApp = angular
       templateUrl: "/partials/home.html"
     }).when ("/logout", {
       controller: "LogoutCtrl",
-      templateUrl: "/partials/logout.html"
+      templateUrl: "partials/logout.html"
     })
 
 
