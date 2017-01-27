@@ -1,5 +1,5 @@
 pinterestApp.controller ("UserCtrl", function ($scope,$http,$location,MainFactory){
-
+$(".button-collapse").sideNav();
    // if (!firebase.auth().currentUser) {
    //  $location.path (`/login`)
    // }

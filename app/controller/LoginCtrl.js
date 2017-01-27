@@ -1,5 +1,5 @@
 pinterestApp.controller ("LoginCtrl", function ($scope,$location) {
-
+$(".button-collapse").sideNav();
 $scope.goRegister = function() {
     console.log("go");
     $('#modal1').modal('close');

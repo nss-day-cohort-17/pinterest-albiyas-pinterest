@@ -1,1 +1,3 @@
-pinterestApp.controller ("HomeCtrl", function(){})
+pinterestApp.controller ("HomeCtrl", function(){
+  $(".button-collapse").sideNav();
+})

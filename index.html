@@ -23,13 +23,23 @@
  -->
 
    <nav>
-    <div class="nav-wrapper" ng-controller="LogoutCtrl">
+    <div class="nav-wrapper">
       <a href="#" class="brand-logo right"><img src="">Logo</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+      <i class="material-icons">Menu</i>
+      </a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="#/home">Home</a></li>
         <li><a href="#/userView">My Collections</a></li>
         <li><a href="#/login">Login</a></li>
-        <li><a href="#/logout">Logout</a></li>
+        <li><a href="#/logout" ng-click=logout()>Logout</a></li>
+
+      </ul>
+      <ul id="mobile-demo" class="side-nav">
+        <li><a href="#/home">Home</a></li>
+        <li><a href="#/userView">My Collections</a></li>
+        <li><a href="#/login">Login</a></li>
+        <li><a href="#/logout" ng-click=logout()>Logout</a></li>
 
       </ul>
     </div>
