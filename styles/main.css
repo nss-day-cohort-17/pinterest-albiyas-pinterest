@@ -13,6 +13,7 @@ nav ul a {
 
 
 body {
+
   background-color: white;
 }
 
@@ -91,3 +92,10 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+  background-color: #F0F4C3;
+}
+#logout {
+  text-align: center
+}
+

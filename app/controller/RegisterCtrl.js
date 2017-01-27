@@ -1,4 +1,5 @@
 pinterestApp.controller ("RegisterCtrl", function ($http, $scope,$location,MainFactory) {
+
   $scope.goRegister = () => {
     MainFactory.getter($scope.user.email,$scope.user.password)
     .then ((data)=> {
@@ -10,18 +11,7 @@ pinterestApp.controller ("RegisterCtrl", function ($http, $scope,$location,MainF
     })
         $location.path(`/userView`)
         $scope.$apply()
-
-
-
 })
 
 }
-
-
-
-
-
-
-
-
 })

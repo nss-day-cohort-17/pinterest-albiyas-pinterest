@@ -1,0 +1,28 @@
+{
+  "name": "y",
+  "homepage": "y",
+  "authors": [
+    "y"
+  ],
+  "description": "y",
+  "main": "y",
+  "license": "y",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "firebase": "^3.6.6",
+    "angular-route": "^1.6.1",
+    "materialize": "^0.98.0",
+    "lodash": "^4.17.4"
+  },
+  "keywords": [
+    "y"
+  ],
+  "private": true
+}

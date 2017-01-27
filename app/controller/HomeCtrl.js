@@ -1,3 +1,4 @@
+
 pinterestApp.controller ("HomeCtrl", function($scope, $location){
 
 (function($){
@@ -15,5 +16,5 @@ $scope.goRegister = function() {
     $location.path('/register')
 
   }
- 
+
 })
