@@ -49,3 +49,4 @@ var pinterestApp = angular
 
 
 })
+$(".button-collapse").sideNav();
