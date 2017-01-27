@@ -54,6 +54,7 @@ $scope.deletePin = (key) => {
 }
 $scope.addBoardId = (key) => {
           $scope.keyFromBoard = key
+          console.log($scope.key)
           $http.patch(`https://pinterest-d2d81.firebaseio.com/Pins/${$scope.key}.json`,
             {
               boardId : $scope.keyFromBoard//key from board
@@ -124,5 +125,12 @@ $scope.addBoardId = (key) => {
 
       } // Callback for Modal close
     })
-
+$scope.showPins = (key)=>{
+  $scope.key = key
+  $http.get(`https://pinterest-d2d81.firebaseio.com/Pins.json?orderBy="boardId"&equalTo="${$scope.key}"
+`)
+  .then((response)=>{
+    $scope.pins = response.data
+  })
+}
 })
