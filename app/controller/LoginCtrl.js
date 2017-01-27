@@ -21,8 +21,8 @@ $scope.goRegister = function() {
         console.log('close');
 
       } // Callback for Modal close
-    }
-  );
+    });
+  
 
   $scope.user = {}
   $scope.loginHandler = () => {
