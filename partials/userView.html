@@ -49,9 +49,7 @@
         </div>
         <div class="card-action">
 
-          <a href="{{value.url}}">Go to Link</a>
-
-          <a target="_blank" href="{{value.url}}">Go</a>
+          <a target="_blank" href="{{value.url}}">Go To Link</a>
 
 
         </div>
@@ -76,9 +74,9 @@
           <ul>
  <!-- This is where the boards are created -->
             <li ng-repeat="(key, value) in boards">
-<button ng-click="boardDelete(key)">Delete This board</button>
+            <button ng-click="boardDelete(key)">Delete This board</button>
 
-             <button class="btn col s8"  >{{value.Title}}</button>
+             <button class="btn col s8" ng-click="addBoardId(key)" >{{value.Title}}</button>
 
             </li>
           </ul>
@@ -102,12 +100,16 @@
             <li ng-repeat="(key, value) in boards">
 <button ng-click="boardDelete(key)">Delete This board</button>
 
-             <button class="btn col s8"  >{{value.Title}}</button>
+             <button class="btn col s8" ng-click="showPins(key)" >{{value.Title}}</button>
 
             </li>
           </ul>
         </div>
-    </div>
+        <!-- show the pins associated with a board -->
+        <div ng-repeat="pin in pins ">
+          <img src="{{pin.image}}">
+        </div>
+            </div>
 
 </div>
 
