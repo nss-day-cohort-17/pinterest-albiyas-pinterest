@@ -1,64 +1,116 @@
-<nav>
-  <ul>
-    <li><a href="#/myBoards">My Boards</a></li>
-    <li><a href="#/createBoard">Create New Board</a></li>
-  </ul>
-</nav>
+<div ng-repeat = "data in data">
+  <img src={{data.image}}>
+</div>
+<div class="container">
 
-<form ng-submit="postToFireBase(url,description,imageUrl)">
-      <div>Link</div>
-        <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
-      <div>Description:</div>
-        <input type="text" ng-model="description" name="description" placeholder="Describe your card">
-      <div>have a photo?</div>
-        <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
-        <input type="text" name="Title" placeholder="Title", ng-model="title">
+  <a data-target="modalPin" class="btn-floating btn-large waves-effect waves-light red center-align"><i class="material-icons">+</i></a>
 
-    <input type="submit" value="Create Item">
-</form>
+ <a ng-click = "userBoards(key,value)" data-target="listOnlyPinsBoard"  class="btn-floating btn-large waves-effect waves-light blue center-align"><i class="material-icons">B</i>All Boards</a>all Boards
+<!-- Modal Structure -->
+<div id="modalPin" class="modal">
+    <div class="modal-content">
+      <form ng-submit="postToFireBase(url,description,imageUrl)">
+            <div>Link</div>
+              <input type="text" ng-model="url" name="url" placeholder="Enter link Here">
+            <div>Description:</div>
+              <input type="text" ng-model="description" name="description" placeholder="Describe your card">
+            <div>have a photo?</div>
+              <input type="text" ng-model="imageUrl" name="imageUrl" placeholder="Image link">
+              <input type="text" name="Title" placeholder="Title", ng-model="title">
 
-<form ng-submit="boardToFireBase(boardName)">
-      <div>Board/Rack</div>
-
-        <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
-
-
-    <input type="submit" value="Create Board">
-</form>
+          <input id="closeModal" type="submit" value="Create Item">
+      </form>
+    </div>
+</div>  <!-- end pin modal -->
 
 
-<div ng-click="getThePins()">stuff</div>
-<div ng-repeat="pin in domPin">
+
+<!-- Pin card -->
+
+<div ng-click="getThePins()">All Pins</div>
+
+
+<!-- <div ng-repeat="pin in domPin"> -->
+<div ng-repeat= "(key, value) in domPin">
    <div class="col s12 m7">
 
-    <h2 class="header">{{pin.Title}}</h2>
+    <h2 class="header">{{value.Title}}</h2>
     <div class="card horizontal">
       <div class="card-image">
-        <img src="{{pin.image}}" alt="Pin Image">
-        <button ng-click = addPin(pin)>Add Pin</button>
+        <img src="{{value.image}}" alt="Pin Image">
+        <button  data-target="boardModal" ng-click = userBoards(key,value)>Add Pin</button>
       </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <p>{{pin.description}}</p>
+        <div class="card-stacked">
+          <div class="card-content">
+
+          <p>{{value.description}}</p>
+          <button ng-click="deletePin(key)">Delete Pin</button>
+
         </div>
         <div class="card-action">
-          <a href="{{pin.url}}">Go</a>
+
+          <a target="_blank" href="{{value.url}}">Go To Link</a>
+
+
         </div>
       </div>
     </div>
+  <!-- </div> -->
   </div>
+</div>
+  <!-- end pin card -->
+  <!-- Board Modal Structure -->
 
+  <div id="boardModal" class="modal bottom-sheet">
+     <div class="modal-content">
 
+      <h4>Add Pin to which board?</h4>
+        <form ng-submit="boardToFireBase(boardName)">
 
+            <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+            <input type="submit" value="Create Board">
+        </form>
+        <div>
+          <ul>
+ <!-- This is where the boards are created -->
+            <li ng-repeat="(key, value) in boards">
+            <button ng-click="boardDelete(key)">Delete This board</button>
 
+             <button class="btn col s8" ng-click="addBoardId(key)" >{{value.Title}}</button>
 
-
+            </li>
+          </ul>
+        </div>
+    </div>
 
 </div>
-<div>
-  <ul>
-    <li ng-repeat="board in boards">
-     <button ng-click = addBoardId() >{{board.Title}}</button>
-    </li>
-  </ul>
+<!-- This modal to show the pins -->
+<div id="listOnlyPinsBoard" class="modal bottom-sheet">
+     <div class="modal-content">
+
+      <h4>Click a board to display your pins</h4>
+        <form ng-submit="boardToFireBase(boardName)">
+
+            <input type="text" ng-model="boardName" name="description" placeholder="Name Your Board">
+            <input type="submit" value="Create Board">
+        </form>
+        <div>
+          <ul>
+ <!-- This is where the boards are created -->
+            <li ng-repeat="(key, value) in boards">
+<button ng-click="boardDelete(key)">Delete This board</button>
+
+             <button class="btn col s8" ng-click="showPins(key)" >{{value.Title}}</button>
+
+            </li>
+          </ul>
+        </div>
+        <!-- show the pins associated with a board -->
+        <div ng-repeat="pin in pins ">
+          <img src="{{pin.image}}">
+        </div>
+            </div>
+
+</div>
+
 </div>

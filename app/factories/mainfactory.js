@@ -8,9 +8,7 @@ pinterestApp.factory ("MainFactory", function (){
 
       })
     },
-    logout : ()=> {
-      firebase.auth().signOut()
-    },
+
 
     getUid:()=> {
       return UID = firebase.auth().currentUser.uid
